@@ -21,13 +21,15 @@ module purge
 module load intel/23.0.0-fasrc01 intelmpi/2021.8.0-fasrc01 netcdf-fortran/4.6.0-fasrc03
 
 exproot=[dirname]/exp
-prmfile=$exproot/prm/[schname]/[expname]/[pwrname]/[memberx].prm
+
+# prmfile=$exproot/prm/[prjname]/[expname]/[runname]/[memberx].prm
+# prmfile=$exproot/prm/[prjname]/[expname]/[runname].prm
 sndfile=$exproot/snd/[sndname]
 lsffile=$exproot/lsf/[lsfname]
 
-prmloc=./[schname]/prm
-sndloc=./[schname]/snd
-lsfloc=./[schname]/lsf
+prmloc=./[prjname]/prm
+sndloc=./[prjname]/snd
+lsfloc=./[prjname]/lsf
 
 cp $prmfile $prmloc
 cp $sndfile $sndloc
@@ -35,7 +37,7 @@ cp $lsffile $lsfloc
 
 scriptdir=$SLURM_SUBMIT_DIR
 SAMname=`ls $scriptdir/SAM_*`
-echo [schname] > CaseName
+echo [prjname] > CaseName
 
 cd ./OUT_3D
 
