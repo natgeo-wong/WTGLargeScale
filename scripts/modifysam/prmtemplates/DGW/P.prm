@@ -1,6 +1,6 @@
 &PARAMETERS
 
-caseid ='ExploreWTGSpace-T1282km300V64-member[xx]',
+caseid = 'WTGLargeScale-[expname]-member[xx]',
 
 dx = 2000.,
 dy = 2000.,
@@ -20,8 +20,8 @@ dodamping        = .true.,
 doupperbound     = .true.,
 docloud          = .true.,
 doprecip         = .true.,
-dolongwave       = .false.,
-doshortwave      = .false.,
+dolongwave       = .true.,
+doshortwave      = .true.,
 dosurface        = .true.,
 dodynamicocean   = .false.,
 dolargescale     = .true.,
@@ -83,7 +83,7 @@ rad3Dout     = .true.,
 
 &KUANG_PARAMS
 
-doradtendency = .true.,
+doradtendency = .false.,
 dobulksfcflx  = .false.,
 bulksfcflx_u  = 5.
 

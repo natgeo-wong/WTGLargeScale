@@ -1,6 +1,6 @@
 &PARAMETERS
 
-caseid ='ExploreWTGSpace-P1282km300V64-member[xx]',
+caseid = 'WTGLargeScale-[expname]-member[xx]',
 
 dx = 2000.,
 dy = 2000.,
@@ -24,7 +24,7 @@ dolongwave       = .true.,
 doshortwave      = .true.,
 dosurface        = .true.,
 dodynamicocean   = .false.,
-dolargescale     = .true.,
+dolargescale     = .false.,
 doradforcing     = .false.,
 doradhomo        = .false.,
 dosfcforcing     = .false.,
@@ -86,24 +86,5 @@ rad3Dout     = .true.,
 doradtendency = .false.,
 dobulksfcflx  = .false.,
 bulksfcflx_u  = 5.
-
-dowtg_blossey_etal_JAMES2009  = .false.
-dowtg_raymondzeng_QJRMS2005   = .false.
-dowtg_hermanraymond_JAMES2014 = .true.
-dowtg_decompdgw               = .false.
-dowtg_decomptgr               = .false.
-
-wtgscale_time        = 0.1
-
-am_wtg               = [am] ! momentum damping rate in day^-1, default= 1.,
-am_wtg_exp           = 0.,          ! exponent of p/p0 in momentum damping rate.
-lambda_wtg           = 650.e3,      ! quarter wavelength in m. default = 650.e3 m
-
-tau_wtg              = [tau] ! temperature relaxation in hours, default= 1.,
-dthetadz_min         = 1.e-3
-dowtgLBL             = .true.
-
-wtgscale_vertmodenum = 2      ! number of vertical modes
-wtgscale_vertmodescl = 1., 1. ! wtg strength scaling for vertical modes
 
 /
