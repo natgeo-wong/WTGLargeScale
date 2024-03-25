@@ -1,5 +1,5 @@
 using DrWatson
-@quickactivate "ExploreWTGSpace"
+@quickactivate "WTGLargeScale"
 using Printf
 
 include(srcdir("sam.jl"))

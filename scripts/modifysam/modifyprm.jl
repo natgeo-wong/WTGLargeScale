@@ -1,5 +1,5 @@
 using DrWatson
-@quickactivate "ExploreWTGSpace"
+@quickactivate "WTGLargeScale"
 using Logging
 using Printf
 
