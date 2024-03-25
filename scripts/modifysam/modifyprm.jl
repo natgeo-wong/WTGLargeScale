@@ -5,9 +5,8 @@ using Printf
 
 include(srcdir("sam.jl"))
 
-prjname = "DGW_P"
-schname = split(prjname,"_")[1]
-radname = split(prjname,"_")[2]
+schname = "DGW"
+radname = "P"
 
 if schname == "DGW"
     wtgvec = [0.02,0.05,0.1,0.2,0.5,1,2,5,10,20,50]
@@ -31,11 +30,11 @@ for wtgii in wtgvec
     for wls in wlsvec
 
         expname = wlsname(wls)
-        mkpath(projectdir("exp","prm",prjname,expname,wtgstring))
+        mkpath(projectdir("exp","prm",schname,radname,expname,wtgstring))
         for imember = 1 : 3
             mstr = @sprintf("%02d",imember)
             oprm = projectdir("run","modifysam","prmtemplates",schname,"$(radname).prm")
-            nprm = projectdir("exp","prm",prjname,expname,wtgstring,"member$(mstr).prm")
+            nprm = projectdir("exp","prm",schname,radname,expname,wtgstring,"member$(mstr).prm")
             open(tprm,"w") do fprm
                 open(oprm,"r") do rprm
                     s = read(rprm,String)
@@ -49,7 +48,7 @@ for wtgii in wtgvec
             end
             mkpath(projectdir("exp","prm",prjname,expname,wtgstring))
             mv(tprm,nprm,force=true)
-            @info "Creating new prm file for $prjname $expname $wtgstring ensemble member $imember"
+            @info "Creating new prm file for $schname $radname $expname $wtgstring ensemble member $imember"
         end
 
     end
