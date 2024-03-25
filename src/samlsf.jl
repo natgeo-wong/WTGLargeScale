@@ -6,7 +6,8 @@ using Statistics
 function printlsf(flsf::AbstractString, lsfdata::Array{<:Real,2}, p::Real)
 
     file = joinpath(projectdir("exp","lsf",flsf))
-
+    fdir = dirname(file); if !isdir(fdir); mkpath(fdir); end
+    
     nz = size(lsfdata,1)
 
     open(file,"w") do io
