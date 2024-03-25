@@ -15,7 +15,7 @@ function findztrop(pt,z,p)
 
 end
 
-function wforcing(z,p=zeros(length(z));ztrop,w₀)
+function wforcing(z,p=zeros(length(z));ztrop,w₀,wtg,rad)
 
     nz = length(z)
     lsfdata = zeros(nz,7)
@@ -25,11 +25,26 @@ function wforcing(z,p=zeros(length(z));ztrop,w₀)
         lsfdata[:,2] .= p
     end
 
-    
-    if w₀ > 0
-        w = w₀ .* (sin.(z/ztrop*pi) .- 0.2 * sin.(z/ztrop*2*pi))
-    else
-        w = w₀ .* sin.(z/ztrop*pi)
+    if wtg == "DGW"
+        if w₀ > 0
+            w = w₀ .* (sin.(z/ztrop*pi) .- 0.2 * sin.(z/ztrop*2*pi))
+        else
+            w = w₀ .* (sin.(z/ztrop*pi) 
+                   .-  sin.(z/ztrop*3*pi) * 0.1
+                   .+  sin.(z/ztrop*4*pi) * 0.1)
+        end
+    elseif wtg == "SPC"
+        if w₀ > 0
+            w = w₀ .* (sin.(z/ztrop*pi) 
+                   .-  sin.(z/ztrop*2*pi) * 0.3
+                   .+  sin.(z/ztrop*4*pi) * 0.15
+                   .-  sin.(z/ztrop*5*pi) * 0.1)
+        else
+            w = w₀ .* (sin.(z/ztrop*pi) 
+                   .+  sin.(z/ztrop*2*pi) * 0.3 
+                   .-  sin.(z/ztrop*3*pi) * 0.2 
+                   .+  sin.(z/ztrop*4*pi) * 0.1)
+        end
     end
     w[z.>ztrop] .= 0
     lsfdata[:,7] .= w
@@ -38,8 +53,8 @@ function wforcing(z,p=zeros(length(z));ztrop,w₀)
 
 end
 
-
-rad = "T"
+schname = "SPC"
+radname = "P"
 wlsvec = vcat(-1:0.2:1); wlsvec = wlsvec[.!iszero.(wlsvec)]
 
 z,p,pt,_,_,_ = readsnd("$(rad).snd"); nz = length(z)
@@ -47,7 +62,7 @@ ztrop,iztrop = findztrop(pt,z,p)
 
 for wls in wlsvec
 
-    lsfname = joinpath(rad,"$(wlsname(wls)).lsf")
-    printlsf(lsfname,wforcing(z,p,ztrop=ztrop,w₀=wls),1009.32)
+    lsfname = joinpath(schname,radname,"$(wlsname(wls)).lsf")
+    printlsf(lsfname,wforcing(z,p,ztrop=ztrop,w₀=wls,wtg=schname,rad=radname),1009.32)
 
 end
