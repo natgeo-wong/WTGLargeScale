@@ -3,20 +3,21 @@ using NCDatasets
 using Printf
 using Statistics
 
+include(srcdir("common.jl"))
 include(srcdir("sam.jl"))
 
 function printsnd(fsnd::AbstractString, snddata::Array{<:Real,2}, p::Real)
 
-    file = joinpath(projectdir("exp","snd",fsnd))
+    file = snddir(fsnd)
     fdir = dirname(file); if !isdir(fdir); mkpath(fdir); end
 
     nz = size(snddata,1)
 
-    open(fsnd,"w") do io
+    open(file,"w") do io
         @printf(io,"      z[m]      p[mb]      tp[K]    q[g/kg]     u[m/s]     v[m/s]\n")
     end
 
-    open(fsnd,"a") do io
+    open(file,"a") do io
         for t in [0.0,10000.0]
             @printf(io,"%10.2f, %10d, %10.2f\n",t,nz,p)
             for iz = 1 : nz
@@ -33,7 +34,7 @@ end
 
 function readsnd(sndname::String)
 	
-	fsnd = projectdir("exp","snd",sndname)
+	fsnd = snddir(sndname)
 	data = readdlm(fsnd)
 	data = data[2:end,:]; nrow = size(data,1)
 	data = data[2:Int(nrow/2),:]

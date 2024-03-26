@@ -3,6 +3,8 @@ using Printf
 using Statistics
 using Trapz
 
+include(srcdir("common.jl"))
+
 dampingstrprnt(am::Real)     = replace(   "damping$(@sprintf("%06.2f",am ))")
 relaxscalestrprnt(tau::Real) = replace("relaxscale$(@sprintf("%06.2f",tau))")
 

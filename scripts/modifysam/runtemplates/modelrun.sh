@@ -22,14 +22,13 @@ module load intel/23.0.0-fasrc01 intelmpi/2021.8.0-fasrc01 netcdf-fortran/4.6.0-
 
 exproot=[dirname]/exp
 
-# prmfile=$exproot/prm/[schname]/[radname]/[expname]/[memberx].prm
-# prmfile=$exproot/prm/[schname]/[radname]/[expname].prm
+prmfile=$exproot/prm/[schname]/[radname]/[expname]/[wtgname].prm
 sndfile=$exproot/snd/[schname]/[radname]/[expname].snd
 lsffile=$exproot/lsf/[schname]/[radname]/[expname].lsf
 
-prmloc=./[schname]/prm
-sndloc=./[schname]/snd
-lsfloc=./[schname]/lsf
+prmloc=./SAM/prm
+sndloc=./SAM/snd
+lsfloc=./SAM/lsf
 
 cp $prmfile $prmloc
 cp $sndfile $sndloc
@@ -37,7 +36,7 @@ cp $lsffile $lsfloc
 
 scriptdir=$SLURM_SUBMIT_DIR
 SAMname=`ls $scriptdir/SAM_*`
-echo [prjname] > CaseName
+echo SAM > CaseName
 
 cd ./OUT_3D
 
