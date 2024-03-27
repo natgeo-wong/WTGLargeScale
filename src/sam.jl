@@ -26,9 +26,9 @@ function wlsname(
 )
 
     if wls > 0
-        return "Ascendance$(@sprintf("%3.1f",abs(wls)))"
+        return "Ascendance$(@sprintf("%3.1f",abs(wls)))e-2"
     else
-        return "Subsidence$(@sprintf("%3.1f",abs(wls)))"
+        return "Subsidence$(@sprintf("%3.1f",abs(wls)))e-2"
     end
 
 end

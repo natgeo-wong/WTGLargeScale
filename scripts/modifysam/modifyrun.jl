@@ -16,7 +16,7 @@ else
     wtgvec = [sqrt(2),2,2*sqrt(2.5),5,5*sqrt(2)]
     wtgvec = vcat(wtgvec/10,1,wtgvec)
 end
-wlsvec = vcat(-1:0.2:1); wlsvec = wlsvec[.!iszero.(wlsvec)]
+wlsvec = vcat(-1:0.2:2); wlsvec = wlsvec[.!iszero.(wlsvec)]
 
 mrun = rundir("modifysam","runtemplates","modelrun.sh")
 brun = rundir("modifysam","runtemplates","Build.csh")
